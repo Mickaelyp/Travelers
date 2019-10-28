@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# config/routes.yaml
+
+admin:
+  resource: ../src/Controller/Admin
+  prefix: /admin
+  name_prefix: admin_
+  type: annotation

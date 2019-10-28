@@ -1,0 +1,15 @@
+#home-content{
+    padding: 20%;
+    background-color: rgb(180, 197, 209); 
+    background-image: url(image\voyage.jpg);
+    color: white;
+    font-style: italic;
+}
+
+#btn-btn-primary-btn-lg{
+
+    color: black;
+}
+
+
+
