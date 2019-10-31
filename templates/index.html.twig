@@ -28,6 +28,7 @@
             <p class="lead">Un voyage de 1 000 kilomètres commence toujours par un pas</p><br>
             <a class="p-2 mb-1 bg-info text-white" href="#" role="button">Suivez-nous</a>
         </div>
+        <!-- Ici s'affichera la carte -->
         <div id="traveler-map" style="height:500px;"></div>
         {# <div
                         id="map"><!-- Ici s'affichera la carte -->
@@ -197,9 +198,10 @@
                             {{ parent() }}
                             <script type="text/javascript">
                                 var mymap = L.map('traveler-map').setView([
-                                    45.6963425, 4.73594802991681
+                                    45.754303, 4.854524
                                 ], 13);
                                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(mymap);
-                                var marker = L.marker().setLatLng([45.6963425, 4.73594802991681]).addTo(mymap);
+                                var marker = L.marker().setLatLng([45.754303, 4.854524]).addTo(mymap);
+                                marker.bindPopup('<h3> Maison </h3>');
                             </script>
                         {% endblock %}
