@@ -3,7 +3,7 @@
 {% block title %}Destination{% endblock %}
 
 {% block body %}
-    <h1>Destination</h1>
+    <h1>Destination <span class="badge badge-info">{{ destination.lat }} / {{ destination.lng }}</span></h1>
 
     <table class="table">
         <tbody>
@@ -24,8 +24,8 @@
                 <td>{{ destination.created ? destination.created|date('d-m-y') : '' }}</td>
             </tr>
             <tr>
-                <th>Pays/th>
-                <td>{{ destination.pays }}</td>
+                <th>Pays</th>
+                <td>{{ destination.pays.nom }}</td>
             </tr>
         </tbody>
     </table>

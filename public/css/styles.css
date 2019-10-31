@@ -76,8 +76,7 @@
 
   a {
     color: rgb(56, 192, 255);
-    text-decoration: $link-decoration;
-    background-color: transparent; // Remove the gray background on active links in IE 10.
+    background-color: transparent;
   
   }
 
@@ -85,5 +84,8 @@
 
     box-shadow: 2px 2px 2px 2px #afe7f3ad;
 
+}
 
-  }
+.mb-4 {
+    font-family: 'Kalam', cursive;
+}
