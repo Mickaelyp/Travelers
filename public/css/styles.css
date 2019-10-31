@@ -1,15 +1,89 @@
 #home-content{
     padding: 20%;
     background-color: rgb(180, 197, 209); 
-    background-image: url(image\voyage.jpg);
     color: white;
     font-style: italic;
 }
 
-#btn-btn-primary-btn-lg{
+.jumbotron{
 
-    color: black;
+    background-color: rgb(248, 252, 255);
+    margin-bottom: 0rem;
 }
 
+.titre{
+
+    font-family: 'Kalam', cursive;
+
+}
+
+.display-4 {
+
+    font-family: 'Kalam', cursive;
+}
+
+.mb-5{
+    font-family: 'Kalam', cursive;
+}
+
+.testimonials {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+
+  }
+  
+  .testimonials .testimonial-item {
+    max-width: 18rem;
+  }
+  
+  .testimonials .testimonial-item img {
+    max-width: 12rem;
+    box-shadow: 2px 2px 2px 2px #afe7f3ad;
+  }
+
+  footer.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .footer .bg-light{
+    background-color: rgb(39, 39, 39);
+  }
+
+  .call-to-action {
+    position: relative;
+    background-color: #343a40;
+    background: url("/image/new-york-0.jpg") no-repeat center center;
+    background-size: cover;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+  
+  .call-to-action .overlay {
+    position: absolute;
+    background-color: #7a7a7a;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+
+  .lead{
+
+    font-size: 1.5em;
+  }
+
+  a {
+    color: rgb(56, 192, 255);
+    text-decoration: $link-decoration;
+    background-color: transparent; // Remove the gray background on active links in IE 10.
+  
+  }
+
+  .img-fluid {
+
+    box-shadow: 2px 2px 2px 2px #afe7f3ad;
 
 
+  }

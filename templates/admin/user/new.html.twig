@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}New User
+{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    {# <div class="container pt-3"> #}
+    {# <h1>Créer un utilisateur</h1>
 
-    {{ include('admin/user/_form.html.twig') }}
+    {{ include('admin/user/_form.html.twig', { context: 'NEW'}) }}
 
-    <a href="{{ path('admin_user_index') }}">back to list</a>
-{% endblock %}
+    <a href="{{ path('admin_user_index') }}">Retour à la liste</a> #}
+
+    <div class="container">
+        <div class="row">
+            <div class="col"><br><br><br><br>
+                <h1>Créer un utilisateur</h1>
+
+                {{ include('admin/user/_form.html.twig', { context: 'NEW'}) }}
+
+                <a href="{{ path('admin_user_index') }}">Retour à la liste</a>
+            </div>
+            <div class="col">
+               <img src="/image/inscription.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+        </div>
+    {% endblock %}

@@ -1,41 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}
+    Utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/image/utilisateur.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <div class="container pt-3">
+            <center>
+                <h1>Liste des Utilisateurs</h1><br>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Login</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Id</th>
-                <th>Created</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.login }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.id }}</td>
-                <td>{{ user.created ? user.created|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Login</th>
+                            <th>Roles</th>
+                            <th>Created</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.login }}</td>
+                                <td>
+                                    {{ include('admin/user/roles_pills.html.twig', { roles: user.roles}) }}
+                                </td>
 
-    <a href="{{ path('admin_user_new') }}">Create new</a>
-{% endblock %}
+                                <td>{{ user.created ? user.created|date('d-m-y') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">Voir</a>
+                                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">Edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table><br>
+
+                <a class="p-2 mb-1 bg-info text-white" href="{{ path('admin_user_new') }}">Créer nouveau</a>
+                <center> <br><br><br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/image/voyageur1.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Voyageur 1</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/image/voyageur2.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Voyageur 2</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/image/voyageur3.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Voyageur 3</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br><br><br>
+                {% endblock %}

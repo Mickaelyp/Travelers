@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Photo;
 use App\Entity\Voyage;
 use App\Form\VoyageType;
 use App\Repository\VoyageRepository;
@@ -36,6 +37,19 @@ class VoyageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $photos = $form['photos']->getData();
+            foreach ($photos as $itemPhoto) {
+                $photo = new Photo();
+                $photo->setVoyage($voyage);
+                $destination = $this->getParameter('voyage_photo_folder');
+                $fileName = uniqid() . '.' . $itemPhoto->guessExtension();
+                $itemPhoto->move(
+                    $destination,
+                    $fileName
+                );
+                $photo->setFilePath($fileName);
+                $entityManager->persist($photo);
+            }
             $entityManager->persist($voyage);
             $entityManager->flush();
 
@@ -83,8 +97,12 @@ class VoyageController extends AbstractController
      */
     public function delete(Request $request, Voyage $voyage): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$voyage->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $voyage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            $photos = $voyage->getPhotos();
+            foreach($photos as $photo) {
+                unlink($this->getParameter('voyage_photo_folder') . '/' . $photo->getFilePath());
+            }
             $entityManager->remove($voyage);
             $entityManager->flush();
         }

@@ -1,41 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voyage index{% endblock %}
+{% block title %}Voyage index
+{% endblock %}
 
 {% block body %}
-    <h1>Voyage index</h1>
+    <div class="container pt-3">
+        <center>
+            <h1>Liste de voyage</h1>
+            <br>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Note</th>
-                <th>DateDepart</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for voyage in voyages %}
-            <tr>
-                <td>{{ voyage.id }}</td>
-                <td>{{ voyage.titre }}</td>
-                <td>{{ voyage.description }}</td>
-                <td>{{ voyage.note }}</td>
-                <td>{{ voyage.dateDepart ? voyage.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_voyage_show', {'id': voyage.id}) }}">show</a>
-                    <a href="{{ path('admin_voyage_edit', {'id': voyage.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Destination</th>
+                        <th>Note</th>
+                        <th>Date de Départ</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voyage in voyages %}
+                        <tr>
+                            <td>{{ voyage.titre }}</td>
+                            <td>{{ voyage.destination.ville }}
+                                /
+                                {{ voyage.destination.pays.nom }}</td>
+                            <td>{{ voyage.note }}</td>
+                            <td>{{ voyage.dateDepart ? voyage.dateDepart|date('d/m/Y') : '' }}</td>
+                            <td>
+                                <a href="{{ path('admin_voyage_show', {'id': voyage.id}) }}" class="btn btn-primary" title="Show">
+                                    <i class="fa fa-eye" aria-hidden="true">voir</i>
+                                </a>
+                                <a href="{{ path('admin_voyage_edit', {'id': voyage.id}) }}" class="btn btn-warning" style="color: #FFF;" title="Edit">
+                                    <i class="fa fa-pencil" aria-hidden="true">modifier</i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-    <a href="{{ path('admin_voyage_new') }}">Create new</a>
-{% endblock %}
+            <a href="{{ path('admin_voyage_new') }}" class="btn btn-dark">Créer un voyage</a>
+        </div>
+    </center><br><br>
+    <div>
+        <center>
+            <h3></h3>
+            <center>
+                <div><br>
+                    <div class="row">
+                        <div class="col-10 col-md-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="/image/london.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 col-md-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="/image/Rio.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 col-md-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="/image/sydney.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <center>
+
+                {% endblock %}

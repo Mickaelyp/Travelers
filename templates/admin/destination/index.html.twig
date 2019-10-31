@@ -1,41 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Destination index{% endblock %}
+{% block title %}Destination index
+{% endblock %}
 
 {% block body %}
-    <h1>Destination index</h1>
+    <center><div class="container"><center><br><br>
+        <div class="row">
+            <div class="col-12">
+                <h1>Une nouvelle destination</h1><br><br>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Ville</th>
-                <th>Lat</th>
-                <th>Lng</th>
-                <th>Id</th>
-                <th>Created</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for destination in destinations %}
-            <tr>
-                <td>{{ destination.ville }}</td>
-                <td>{{ destination.lat }}</td>
-                <td>{{ destination.lng }}</td>
-                <td>{{ destination.id }}</td>
-                <td>{{ destination.created ? destination.created|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_destination_show', {'id': destination.id}) }}">show</a>
-                    <a href="{{ path('admin_destination_edit', {'id': destination.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_destination_new') }}">Create new</a>
-{% endblock %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ville</th>
+                            <th>Pays</th>
+                            <th>Created</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for destination in destinations %}
+                            <tr>
+                                <td>{{ destination.ville }}</td>
+                                <td>{{ destination.pays.nom }}</td>
+                                <td>{{ destination.created ? destination.created|date('Y-m-d') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('admin_destination_show', {'id': destination.id}) }}">show</a>
+                                    <a href="{{ path('admin_destination_edit', {'id': destination.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+                <a class="p-2 mb-1 bg-info text-white" href="{{ path('admin_destination_new') }}">Créer nouvelle destination</a><br><br><br>
+            </div>
+        </div><br>
+            <div><center><h3>Nos dernières destinations</h3><center><div><br><br>
+            <div class="row">
+                <div class="col-10 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/image/paris.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/image/tokyo.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/image/newyork.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}

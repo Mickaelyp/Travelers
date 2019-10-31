@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Pays;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -21,19 +22,19 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
 
         // admin
-        $user = new User();
-        $user->setLogin('admin');
-        $user->setRoles(['ROLE_ADMIN']);
-        $password = $this->encoder->encodePassword($user, 'Admin_test');
-        $user->setPassword($password);
-        $manager->persist($user);
+        $admin = new User();
+        $admin->setLogin('admin');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $password = $this->encoder->encodePassword($admin, 'Admin_test');
+        $admin->setPassword($password);
+        $manager->persist($admin);
         $manager->flush();
 
         //utilisateur
 
         $user = new User();
         $user->setLogin('user');
-        $user = setRoles('ROLE_USER');
+        //$user = setRoles('ROLE_USER');
         $password = $this->encoder->encodePassword($user, 'User_test');
         $user->setPassword($password);
         $manager->persist($user);
@@ -41,12 +42,20 @@ class AppFixtures extends Fixture
 
         // Faker
 
-        $faker = Faker\Factory::create();
-            echo $faker->name;
+        // $faker = Faker\Factory::create();
+        //     echo $faker->name;
 
-        // Création pays
+        // pays
 
-        
-            
+        if (($paysFile = fopen(__DIR__ . "/../../data/ListeDePays.csv", "r")) !== FALSE) {
+            while (($data = fgetcsv($paysFile)) !== FALSE) {
+                $pays = new Pays();
+                $pays->setNom($data[0]);
+                $manager->persist($pays);
+            }
+
+            fclose($paysFile);
+        }
+        $manager->flush();
     }
 }

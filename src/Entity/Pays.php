@@ -17,10 +17,6 @@ class Pays
      */
     private $nom;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Destination", mappedBy="pays", orphanRemoval=true)

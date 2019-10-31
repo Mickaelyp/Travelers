@@ -43,6 +43,12 @@ class Voyage
      */
     private $photos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="voyages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $destination;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -128,6 +134,18 @@ class Voyage
                 $photo->setVoyage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDestination(): ?Destination
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(?Destination $destination): self
+    {
+        $this->destination = $destination;
 
         return $this;
     }
